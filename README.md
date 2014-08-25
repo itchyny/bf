@@ -1,4 +1,4 @@
-# bf - a unix command which executes a Brainfuck code
+# bf - executes a Brainfuck code
 ## Installation
 
     git clone https://github.com/itchyny/bf
