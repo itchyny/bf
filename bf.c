@@ -122,7 +122,6 @@ void cat(bf_state* state, char* buffer) {
 
 int main(int argc, char *argv[]) {
   char buffer[256];
-  int i, bufferlen;
   FILE* fp = NULL;
   bf_state state = { 0, 0, 0, 0, { 0 }, { 0 }, { 0 } };
   if (argc >= 2 && strcmp(argv[1], "-") != 0 && strcmp(argv[1], "--") != 0)
