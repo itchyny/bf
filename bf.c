@@ -27,7 +27,7 @@ void decr(bf_state* state) {
 void next(bf_state* state) {
   if (!state->loopskip) {
     if (++state->index >= sizeof(state->memory)) {
-      fprintf(stderr, "bf: out of memory");
+      fprintf(stderr, "bf: out of memory\n");
       exit(EXIT_FAILURE);
     }
   }
@@ -36,7 +36,7 @@ void next(bf_state* state) {
 void prev(bf_state* state) {
   if (!state->loopskip) {
     if (--state->index < 0) {
-      fprintf(stderr, "bf: negative address access");
+      fprintf(stderr, "bf: negative address access\n");
       exit(EXIT_FAILURE);
     }
   }
@@ -58,7 +58,7 @@ void get(bf_state* state) {
 void loopstart(bf_state* state) {
   if (!state->loopskip) {
     if (state->loopdepth >= sizeof(state->loop) - 1) {
-      fprintf(stderr, "bf: too deep loops");
+      fprintf(stderr, "bf: too deep loops\n");
       exit(EXIT_FAILURE);
     }
   }
@@ -72,7 +72,7 @@ void loopstart(bf_state* state) {
 
 void loopend(bf_state* state) {
   if (--state->loopdepth < 0) {
-    fprintf(stderr, "bf: too much loop close");
+    fprintf(stderr, "bf: too much loop close\n");
     exit(EXIT_FAILURE);
   }
   if (!state->loopskip) {
@@ -115,7 +115,7 @@ void cat(bf_state* state, char* buffer) {
   if (state->codeindex + strlen(buffer) < sizeof(state->code)) {
     strcat(state->code, buffer);
   } else {
-    fprintf(stderr, "bf: input code too long");
+    fprintf(stderr, "bf: input code too long\n");
     exit(EXIT_FAILURE);
   }
 }
@@ -127,7 +127,7 @@ int main(int argc, char *argv[]) {
   bf_state state = { 0, 0, 0, 0, { 0 }, { 0 }, { 0 } };
   if (argc >= 2 && strcmp(argv[1], "-") != 0 && strcmp(argv[1], "--") != 0)
     if ((fp = fopen(argv[1], "r")) == NULL) {
-      fprintf(stderr, "bf: input file error");
+      fprintf(stderr, "bf: input file error\n");
       exit(EXIT_FAILURE);
     }
   if (fp == NULL) fp = stdin;
